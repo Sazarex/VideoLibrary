@@ -16,17 +16,17 @@ namespace WinFormsVideoLibrary.Specifications.Base
 
         public ISpecification<T> And(ISpecification<T> other)
         {
-            throw new NotImplementedException();
+            return new AndSpecification<T>(this, other);
         }
 
         public ISpecification<T> Not()
         {
-            throw new NotImplementedException();
+            return new NotSpecification<T>(this);
         }
 
         public ISpecification<T> Or(ISpecification<T> other)
         {
-            throw new NotImplementedException();
+            return new OrSpecification<T>(this, other);
         }
     }
 }

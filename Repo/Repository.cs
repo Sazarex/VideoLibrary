@@ -33,7 +33,7 @@ namespace Repo
                 dbSet.Remove(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             return dbSet;
         }
@@ -63,29 +63,5 @@ namespace Repo
 
 
 
-
-        private bool disposed = false;
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed && disposing)
-            {
-                _context.Dispose();
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Console.WriteLine("Repository has been disposed.");
-
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~Repository()
-        {
-            Dispose(false);
-        }
     }
 }

@@ -33,25 +33,26 @@
             nameTextBox = new TextBox();
             producerTextBox = new TextBox();
             label2 = new Label();
-            label3 = new Label();
-            ageLimitNumericUpDown = new NumericUpDown();
             genreTextBox = new TextBox();
             label4 = new Label();
-            label5 = new Label();
-            creationDateDateTimePicker = new DateTimePicker();
             searchButton = new Button();
+            Refresh = new Button();
             ((System.ComponentModel.ISupportInitialize)moviesDataGrid).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ageLimitNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // moviesDataGrid
             // 
+            moviesDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             moviesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            moviesDataGrid.Location = new Point(13, 119);
+            moviesDataGrid.Location = new Point(13, 82);
+            moviesDataGrid.MultiSelect = false;
             moviesDataGrid.Name = "moviesDataGrid";
+            moviesDataGrid.ReadOnly = true;
             moviesDataGrid.RowTemplate.Height = 25;
-            moviesDataGrid.Size = new Size(652, 319);
+            moviesDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            moviesDataGrid.Size = new Size(652, 356);
             moviesDataGrid.TabIndex = 0;
+            moviesDataGrid.CellDoubleClick += moviesDataGrid_CellDoubleClick;
             // 
             // label1
             // 
@@ -85,22 +86,6 @@
             label2.TabIndex = 3;
             label2.Text = "Режиссер";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(13, 67);
-            label3.Name = "label3";
-            label3.Size = new Size(151, 15);
-            label3.TabIndex = 5;
-            label3.Text = "Возврастное ограничение";
-            // 
-            // ageLimitNumericUpDown
-            // 
-            ageLimitNumericUpDown.Location = new Point(170, 65);
-            ageLimitNumericUpDown.Name = "ageLimitNumericUpDown";
-            ageLimitNumericUpDown.Size = new Size(185, 23);
-            ageLimitNumericUpDown.TabIndex = 7;
-            // 
             // genreTextBox
             // 
             genreTextBox.Location = new Point(480, 6);
@@ -117,25 +102,9 @@
             label4.TabIndex = 8;
             label4.Text = "Жанр";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(373, 38);
-            label5.Name = "label5";
-            label5.Size = new Size(81, 15);
-            label5.TabIndex = 10;
-            label5.Text = "Дата выпуска";
-            // 
-            // creationDateDateTimePicker
-            // 
-            creationDateDateTimePicker.Location = new Point(480, 35);
-            creationDateDateTimePicker.Name = "creationDateDateTimePicker";
-            creationDateDateTimePicker.Size = new Size(185, 23);
-            creationDateDateTimePicker.TabIndex = 12;
-            // 
             // searchButton
             // 
-            searchButton.Location = new Point(590, 67);
+            searchButton.Location = new Point(588, 38);
             searchButton.Name = "searchButton";
             searchButton.Size = new Size(75, 23);
             searchButton.TabIndex = 13;
@@ -143,18 +112,25 @@
             searchButton.UseVisualStyleBackColor = true;
             searchButton.Click += searchButton_Click;
             // 
+            // Refresh
+            // 
+            Refresh.Location = new Point(590, 442);
+            Refresh.Name = "Refresh";
+            Refresh.Size = new Size(75, 23);
+            Refresh.TabIndex = 14;
+            Refresh.Text = "Обновить";
+            Refresh.UseVisualStyleBackColor = true;
+            Refresh.Click += Refresh_Click;
+            // 
             // MoviesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(675, 450);
+            ClientSize = new Size(675, 477);
+            Controls.Add(Refresh);
             Controls.Add(searchButton);
-            Controls.Add(creationDateDateTimePicker);
-            Controls.Add(label5);
             Controls.Add(genreTextBox);
             Controls.Add(label4);
-            Controls.Add(ageLimitNumericUpDown);
-            Controls.Add(label3);
             Controls.Add(producerTextBox);
             Controls.Add(label2);
             Controls.Add(nameTextBox);
@@ -163,7 +139,6 @@
             Name = "MoviesForm";
             Text = "MoviesForm";
             ((System.ComponentModel.ISupportInitialize)moviesDataGrid).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ageLimitNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,13 +148,10 @@
         private TextBox nameTextBox;
         private TextBox producerTextBox;
         private Label label2;
-        private Label label3;
-        private NumericUpDown ageLimitNumericUpDown;
         private TextBox genreTextBox;
         private Label label4;
-        private Label label5;
-        private DateTimePicker creationDateDateTimePicker;
         private Button searchButton;
-        private DataGridView moviesDataGrid;
+        public DataGridView moviesDataGrid;
+        private Button Refresh;
     }
 }

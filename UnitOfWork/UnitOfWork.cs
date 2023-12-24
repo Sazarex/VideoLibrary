@@ -1,4 +1,5 @@
 ﻿using DataBase;
+using Microsoft.EntityFrameworkCore;
 using Repo;
 
 namespace UnitOfWorkNamespace
@@ -6,7 +7,7 @@ namespace UnitOfWorkNamespace
     /// <summary>
     /// Большой синглтон todo: поправить под многопоточность
     /// </summary>
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private DataBaseContext db = new DataBaseContext();
 
@@ -70,6 +71,33 @@ namespace UnitOfWorkNamespace
         public void Save()
         {
             db.SaveChanges();
+        }
+
+        
+
+        private bool disposed = false;
+
+        public virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~UnitOfWork()
+        {
+            Dispose(false);
         }
 
     }

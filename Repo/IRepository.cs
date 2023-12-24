@@ -2,10 +2,10 @@
 
 namespace Repo
 {
-    public interface IRepository<T>: IDisposable
+    public interface IRepository<T>
         where T: IEntity
     {
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
         IEnumerable<T> GetByCondition(Func<T, bool> predicate);
         T GetEntity(int id);
         void CreateEntity(T entity);

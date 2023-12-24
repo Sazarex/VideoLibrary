@@ -1,6 +1,6 @@
-using DataBase;
-using Microsoft.EntityFrameworkCore;
-using Repo;
+using Domain;
+using Domain.BaseTypes;
+using UnitOfWorkNamespace;
 
 namespace WinFormsVideoLibrary
 {
@@ -19,13 +19,29 @@ namespace WinFormsVideoLibrary
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DbContext db = new DataBaseContext();
-            GenreRepository genreRep = new GenreRepository(db);
-            genreRep.CreateEntity(new Domain.Genre() { Name = "Fjffjjf 111 gogo dofokdo" });
-            genreRep.CreateEntity(new Domain.Genre() { Name = "11123do3031112" });
-            genreRep.CreateEntity(new Domain.Genre() { Name = "dofiofi34Do Do r433111 Dolkl,fok." });
-            genreRep.Save();
-            //genreRep.Dispose();
+            //UnitOfWork UoW = Program.UnitOfWork;
+
+            //var genre1 = new Genre() { Name = "Драмма" };
+            //var genre2 = new Genre() { Name = "Триллер" };
+            //var genre3 = new Genre() { Name = "Фантастика" };
+
+            //UoW.GenreRepository.CreateEntity(genre1);
+            //UoW.GenreRepository.CreateEntity(genre2);
+            //UoW.GenreRepository.CreateEntity(genre3);
+
+            //var prod1 = new Producer() { Name = "Иван Пупкин", EntityState = EntityState.Active };
+            //var prod2 = new Producer() { Name = "Карина Валеро", EntityState = EntityState.Active };
+            //var prod3 = new Producer() { Name = "Жан Фатон", EntityState = EntityState.Active };
+
+            //UoW.ProducerRepository.CreateEntity(prod1);
+            //UoW.ProducerRepository.CreateEntity(prod2);
+            //UoW.ProducerRepository.CreateEntity(prod3);
+
+            //UoW.MovieRepository.CreateEntity(new Movie() { Name = "Пришельцы против Гоблинов", Genre = genre1, Description = "Lorem ipsum jfjf fjfjf oeoe", Producer = prod1 });
+            //UoW.MovieRepository.CreateEntity(new Movie() { Name = "Гоблинский фильм", Genre = genre1, Description = "Lorem ipsum jfjf fjfjf oeoe", Producer = prod1 });
+            //UoW.MovieRepository.CreateEntity(new Movie() { Name = "Рандом", Genre = genre3, Description = "Lorem ipsumjf fjfjf oeoe", Producer = prod3 });
+
+            //UoW.Save();
         }
     }
 }

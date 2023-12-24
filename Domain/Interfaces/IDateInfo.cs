@@ -2,7 +2,7 @@
 {
     public interface IDateInfo
     {
-        public DateTime CreationDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }
