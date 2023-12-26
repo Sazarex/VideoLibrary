@@ -12,12 +12,9 @@ namespace DataBase.ModelConfigurations
             builder.Property(_ => _.Id).ValueGeneratedOnAdd().UseIdentityColumn();
 
             builder.HasOne(s => s.User)
-                .WithOne(u => u.Subscription)
-                .HasForeignKey<Subscription>(s => s.UserId);
-
-            builder.HasOne(s => s.Payment)
                 .WithOne(p => p.Subscription)
-                .HasForeignKey<Subscription>(s => s.PaymentId);
+                .HasForeignKey<Subscription>(s => s.UserId)
+                .OnDelete(DeleteBehavior.Cascade); 
         }
     }
 }

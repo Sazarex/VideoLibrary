@@ -1,4 +1,4 @@
-using Domain;
+п»їusing Domain;
 using Domain.BaseTypes;
 using UnitOfWorkNamespace;
 
@@ -19,29 +19,47 @@ namespace WinFormsVideoLibrary
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //UnitOfWork UoW = Program.UnitOfWork;
+            UnitOfWork UoW = Program.UnitOfWork;
 
-            //var genre1 = new Genre() { Name = "Драмма" };
-            //var genre2 = new Genre() { Name = "Триллер" };
-            //var genre3 = new Genre() { Name = "Фантастика" };
+            var genre1 = new Genre() { Name = "Р”СЂР°РјРјР°" };
+            var genre2 = new Genre() { Name = "РўСЂРёР»Р»РµСЂ" };
+            var genre3 = new Genre() { Name = "Р¤Р°РЅС‚Р°СЃС‚РёРєР°" };
 
-            //UoW.GenreRepository.CreateEntity(genre1);
-            //UoW.GenreRepository.CreateEntity(genre2);
-            //UoW.GenreRepository.CreateEntity(genre3);
+            UoW.GenreRepository.CreateEntity(genre1);
+            UoW.GenreRepository.CreateEntity(genre2);
+            UoW.GenreRepository.CreateEntity(genre3);
 
-            //var prod1 = new Producer() { Name = "Иван Пупкин", EntityState = EntityState.Active };
-            //var prod2 = new Producer() { Name = "Карина Валеро", EntityState = EntityState.Active };
-            //var prod3 = new Producer() { Name = "Жан Фатон", EntityState = EntityState.Active };
+            var prod1 = new Producer() { Name = "РРІР°РЅ РџСѓРїРєРёРЅ", EntityState = EntityState.Active };
+            var prod2 = new Producer() { Name = "РљР°СЂРёРЅР° Р’Р°Р»РµСЂРѕ", EntityState = EntityState.Active };
+            var prod3 = new Producer() { Name = "Р–Р°РЅ Р¤Р°С‚РѕРЅ", EntityState = EntityState.Active };
 
-            //UoW.ProducerRepository.CreateEntity(prod1);
-            //UoW.ProducerRepository.CreateEntity(prod2);
-            //UoW.ProducerRepository.CreateEntity(prod3);
+            UoW.ProducerRepository.CreateEntity(prod1);
+            UoW.ProducerRepository.CreateEntity(prod2);
+            UoW.ProducerRepository.CreateEntity(prod3);
 
-            //UoW.MovieRepository.CreateEntity(new Movie() { Name = "Пришельцы против Гоблинов", Genre = genre1, Description = "Lorem ipsum jfjf fjfjf oeoe", Producer = prod1 });
-            //UoW.MovieRepository.CreateEntity(new Movie() { Name = "Гоблинский фильм", Genre = genre1, Description = "Lorem ipsum jfjf fjfjf oeoe", Producer = prod1 });
-            //UoW.MovieRepository.CreateEntity(new Movie() { Name = "Рандом", Genre = genre3, Description = "Lorem ipsumjf fjfjf oeoe", Producer = prod3 });
+            UoW.MovieRepository.CreateEntity(new Movie() { Name = "РџСЂРёС€РµР»СЊС†С‹ РїСЂРѕС‚РёРІ Р“РѕР±Р»РёРЅРѕРІ", Genre = genre1, Description = "Lorem ipsum jfjf fjfjf oeoe", Producer = prod1 });
+            UoW.MovieRepository.CreateEntity(new Movie() { Name = "Р“РѕР±Р»РёРЅСЃРєРёР№ С„РёР»СЊРј", Genre = genre1, Description = "Lorem ipsum jfjf fjfjf oeoe", Producer = prod1 });
+            UoW.MovieRepository.CreateEntity(new Movie() { Name = "Р Р°РЅРґРѕРј", Genre = genre3, Description = "Lorem ipsumjf fjfjf oeoe", Producer = prod3 });
 
-            //UoW.Save();
+            UoW.UserRepository.CreateEntity(new User() { Name = "РђСЂС‚СѓСЂ Р—Р°Р±РѕСЂРѕРІРёС‡", Age = 26 });
+            UoW.UserRepository.CreateEntity(new User() { Name = "РљР°СЂС‚РѕРЅ РђР»СЊ РњР°С…РёР±", Age = 12 });
+            UoW.UserRepository.CreateEntity(new User() { Name = "РљРёСЂРёР»Р» РўСЂР°РєС‚РёСЂРѕРІРёС‡", Age = 32 });
+            UoW.UserRepository.CreateEntity(new User() { Name = "Р¤РѕСЂС‚СѓРЅ Р РёС…С‚РµСЂ", Age = 19 });
+            UoW.UserRepository.CreateEntity(new User() { Name = "РРІР°РЅ Р§РµРєР°РЅ", Age = 19 });
+
+            UoW.Save();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var usersForm = new UsersForm();
+            usersForm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var subscriptionControlForm = new SubscriptionControlForm();
+            subscriptionControlForm.Show();
         }
     }
 }

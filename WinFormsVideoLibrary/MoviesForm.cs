@@ -9,7 +9,7 @@ namespace WinFormsVideoLibrary
     public partial class MoviesForm : Form
     {
         private UnitOfWork UoW = Program.UnitOfWork;
-        LoadDataGridService<Movie, MovieDto> loadDataGridService = new LoadDataGridService<Movie, MovieDto>();
+        LoadDataGridService<Movie, MovieListDto> loadDataGridService = new LoadDataGridService<Movie, MovieListDto>();
 
         public MoviesForm()
         {
@@ -45,13 +45,16 @@ namespace WinFormsVideoLibrary
 
         private void moviesDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var cellValue = moviesDataGrid.Rows[e.RowIndex].Cells[4].Value;
+            if (e.RowIndex == -1)
+                return;
 
-            if (cellValue is int movieId)
-            {
-                MovieForm movieForm = new MovieForm(movieId);
-                movieForm.Show();
-            }
+                var cellValue = moviesDataGrid.Rows[e.RowIndex].Cells[4].Value;
+
+                if (cellValue is int movieId && movieId != 0)
+                {
+                    MovieForm movieForm = new MovieForm(movieId);
+                    movieForm.Show();
+                }
         }
 
         private void Refresh_Click(object sender, EventArgs e)

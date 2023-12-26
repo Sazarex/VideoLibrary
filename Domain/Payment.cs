@@ -9,7 +9,6 @@ namespace Domain
         public DateTime? CreationDate { get; set; }
         public DateTime? EndDate { get; set; }
         public EntityState? EntityState { get; set; }
-
         public virtual Subscription Subscription { get; set; }
         public int? SubscriptionId { get; set; }
 

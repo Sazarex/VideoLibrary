@@ -1,6 +1,7 @@
 ﻿using Domain;
-using Microsoft.VisualBasic.Devices;
 using UnitOfWorkNamespace;
+using WinFormsVideoLibrary.Dto;
+using WinFormsVideoLibrary.Services;
 
 namespace WinFormsVideoLibrary
 {
@@ -8,7 +9,7 @@ namespace WinFormsVideoLibrary
     {
         private UnitOfWork UoW = Program.UnitOfWork;
         private Movie _movie = null;
-
+        private int? entityId = null;
         public MovieForm()
         {
             InitializeComponent();
@@ -20,37 +21,48 @@ namespace WinFormsVideoLibrary
         {
             InitializeComponent();
 
-            Movie movie = UoW.MovieRepository.GetEntity(movieId);
+            //Movie movie = UoW.MovieRepository.GetEntity(movieId);
+            EntityInfoService entityInfoService = new EntityInfoService();
+            var movieDto = entityInfoService.LoadEntityInfoAsync<Movie, MovieEntityDto>(movieId);
 
-            if (movie != null)
+            if (movieDto != null)
             {
-                _movie = movie;
-                nameTextBox.Text = movie.Name;
-                genreTextBox.Text = movie.Genre.Name;
-                producerTextBox.Text = movie.Producer.Name;
-                descriptionTextBox.Text = movie.Description;
+                //_movie = movieDto;
+                entityId = movieDto.Id;
+                nameTextBox.Text = movieDto.Name;
+                genreTextBox.Text = movieDto.GenreName;
+                producerTextBox.Text = movieDto.ProducerName;
+                descriptionTextBox.Text = movieDto.Description;
             }
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _movie.Name = nameTextBox.Text;
+            if (entityId == null)
+                return;
+
+            _movie = UoW.MovieRepository.GetEntity(entityId.GetValueOrDefault());
+
+            if (nameTextBox.Text == null)
+                MessageBox.Show("Пустое значение наименования", "Ошибка в сохранении");
+            else
+                _movie.Name = nameTextBox.Text;
 
             Genre newGenre = UoW.GenreRepository.GetByCondition(g => g.Name == genreTextBox.Text).FirstOrDefault();
             if (newGenre == null)
-                MessageBox.Show("Такого жанра не существует","Ошибка в сохранении");
+                MessageBox.Show("Такого жанра не существует", "Ошибка в сохранении");
             else
                 _movie.Genre = newGenre;
 
             Producer newProducer = UoW.ProducerRepository.GetByCondition(g => g.Name == producerTextBox.Text).FirstOrDefault();
             if (newProducer == null)
-                MessageBox.Show("Такого режиссера не существует","Ошибка в сохранении");
+                MessageBox.Show("Такого режиссера не существует", "Ошибка в сохранении");
             else
                 _movie.Producer = newProducer;
             _movie.Description = descriptionTextBox.Text;
+
             UoW.Save();
+            MessageBox.Show("Успешно сохранено.", "Cохранение");
 
         }
     }

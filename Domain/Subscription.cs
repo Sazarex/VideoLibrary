@@ -12,9 +12,6 @@ namespace Domain
         public EntityState? EntityState { get; set; }
         public virtual User User { get; set; }
         public virtual Payment Payment { get; set; }
-
-
         public int? UserId { get; set; }
-        public int? PaymentId { get; set; }
     }
 }

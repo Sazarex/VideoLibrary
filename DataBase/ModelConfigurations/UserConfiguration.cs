@@ -11,10 +11,6 @@ namespace DataBase.ModelConfigurations
             builder.ToTable("Users");
             builder.Property(_ => _.Id).ValueGeneratedOnAdd().UseIdentityColumn();
 
-
-            builder.HasOne(u => u.Subscription)
-                .WithOne(s => s.User)
-                .HasForeignKey<User>(u => u.SubscriptionId);
         }
     }
 }

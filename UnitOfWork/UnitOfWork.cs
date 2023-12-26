@@ -1,4 +1,5 @@
 ﻿using DataBase;
+using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Repo;
 
@@ -73,7 +74,10 @@ namespace UnitOfWorkNamespace
             db.SaveChanges();
         }
 
-        
+        public Repository<T> GetRepositoryByType<T>() where T: class, IEntity
+        {
+            return new Repository<T>(db);
+        }
 
         private bool disposed = false;
 

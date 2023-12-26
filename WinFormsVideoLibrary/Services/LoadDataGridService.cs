@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using WinFormsVideoLibrary.Dto;
-using WinFormsVideoLibrary.Services.Interfaces;
+﻿using WinFormsVideoLibrary.Services.Interfaces;
 
 namespace WinFormsVideoLibrary.Services
 {

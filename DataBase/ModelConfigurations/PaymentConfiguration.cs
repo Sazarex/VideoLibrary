@@ -11,10 +11,10 @@ namespace DataBase.ModelConfigurations
             builder.ToTable("Payments");
             builder.Property(_ => _.Id).ValueGeneratedOnAdd().UseIdentityColumn();
 
-
-            builder.HasOne(p => p.Subscription)
-                .WithOne(s => s.Payment)
-                .HasForeignKey<Payment>(p => p.SubscriptionId);
+            builder.HasOne(s => s.Subscription)
+                .WithOne(p => p.Payment)
+                .HasForeignKey<Payment>(s => s.SubscriptionId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace WinFormsVideoLibrary
         [STAThread]
         static void Main()
         {
-
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             // Настройка AutoMapper
             var mapperConfig = new MapperConfiguration(cfg =>
             {
