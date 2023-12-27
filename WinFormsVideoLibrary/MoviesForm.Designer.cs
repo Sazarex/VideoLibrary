@@ -37,6 +37,7 @@
             label4 = new Label();
             searchButton = new Button();
             Refresh = new Button();
+            createMovie = new Button();
             ((System.ComponentModel.ISupportInitialize)moviesDataGrid).BeginInit();
             SuspendLayout();
             // 
@@ -122,11 +123,22 @@
             Refresh.UseVisualStyleBackColor = true;
             Refresh.Click += Refresh_Click;
             // 
+            // createMovie
+            // 
+            createMovie.Location = new Point(13, 442);
+            createMovie.Name = "createMovie";
+            createMovie.Size = new Size(75, 23);
+            createMovie.TabIndex = 15;
+            createMovie.Text = "Создать";
+            createMovie.UseVisualStyleBackColor = true;
+            createMovie.Click += createMovie_Click;
+            // 
             // MoviesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(675, 477);
+            Controls.Add(createMovie);
             Controls.Add(Refresh);
             Controls.Add(searchButton);
             Controls.Add(genreTextBox);
@@ -153,5 +165,6 @@
         private Button searchButton;
         public DataGridView moviesDataGrid;
         private Button Refresh;
+        private Button createMovie;
     }
 }

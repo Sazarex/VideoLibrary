@@ -37,6 +37,7 @@
             label2 = new Label();
             nameTextBox = new TextBox();
             label1 = new Label();
+            deleteButton = new Button();
             SuspendLayout();
             // 
             // button1
@@ -114,11 +115,23 @@
             label1.TabIndex = 10;
             label1.Text = "Название";
             // 
+            // deleteButton
+            // 
+            deleteButton.Location = new Point(313, 364);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(75, 23);
+            deleteButton.TabIndex = 19;
+            deleteButton.Text = "Удалить";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Visible = false;
+            deleteButton.Click += deleteButton_Click;
+            // 
             // MovieForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(498, 403);
+            ClientSize = new Size(487, 403);
+            Controls.Add(deleteButton);
             Controls.Add(button1);
             Controls.Add(descriptionTextBox);
             Controls.Add(label4);
@@ -145,5 +158,6 @@
         private Label label2;
         public TextBox nameTextBox;
         private Label label1;
+        private Button deleteButton;
     }
 }

@@ -35,6 +35,7 @@
             search = new Button();
             usersDataGrid = new DataGridView();
             refresh = new Button();
+            createUser = new Button();
             ((System.ComponentModel.ISupportInitialize)usersDataGrid).BeginInit();
             SuspendLayout();
             // 
@@ -63,6 +64,7 @@
             isActive.TabIndex = 5;
             isActive.Text = "Подписка активна";
             isActive.UseVisualStyleBackColor = true;
+            isActive.CheckedChanged += isActive_CheckedChanged;
             // 
             // isNotActive
             // 
@@ -73,6 +75,7 @@
             isNotActive.TabIndex = 6;
             isNotActive.Text = "Подписка неактивна";
             isNotActive.UseVisualStyleBackColor = true;
+            isNotActive.CheckedChanged += isNotActive_CheckedChanged;
             // 
             // search
             // 
@@ -86,7 +89,7 @@
             // 
             // usersDataGrid
             // 
-            usersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            usersDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             usersDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             usersDataGrid.Location = new Point(14, 115);
             usersDataGrid.Name = "usersDataGrid";
@@ -95,6 +98,7 @@
             usersDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             usersDataGrid.Size = new Size(774, 323);
             usersDataGrid.TabIndex = 8;
+            usersDataGrid.CellDoubleClick += usersDataGrid_CellDoubleClick;
             // 
             // refresh
             // 
@@ -106,11 +110,22 @@
             refresh.UseVisualStyleBackColor = true;
             refresh.Click += refresh_Click;
             // 
+            // createUser
+            // 
+            createUser.Location = new Point(14, 444);
+            createUser.Name = "createUser";
+            createUser.Size = new Size(75, 23);
+            createUser.TabIndex = 16;
+            createUser.Text = "Создать";
+            createUser.UseVisualStyleBackColor = true;
+            createUser.Click += createUser_Click;
+            // 
             // UsersForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 478);
+            Controls.Add(createUser);
             Controls.Add(refresh);
             Controls.Add(usersDataGrid);
             Controls.Add(search);
@@ -120,6 +135,7 @@
             Controls.Add(label1);
             Name = "UsersForm";
             Text = "UsersForm";
+            Load += UsersForm_Load;
             ((System.ComponentModel.ISupportInitialize)usersDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -135,5 +151,6 @@
         public CheckBox isNotActive;
         public DataGridView usersDataGrid;
         private Button refresh;
+        private Button createUser;
     }
 }

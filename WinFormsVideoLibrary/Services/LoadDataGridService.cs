@@ -19,6 +19,7 @@ namespace WinFormsVideoLibrary.Services
         {
             var result = await Task.Run(() =>LoadByBindingSource(Program.Mapper.Map<Dto>(data)));
             dataGrid.DataSource = result;
+
         }
 
         private BindingSource LoadByBindingSource(object data)

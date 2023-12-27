@@ -61,5 +61,11 @@ namespace WinFormsVideoLibrary
             var subscriptionControlForm = new SubscriptionControlForm();
             subscriptionControlForm.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var producersForm = new ProducersForm();
+            producersForm.Show();
+        }
     }
 }

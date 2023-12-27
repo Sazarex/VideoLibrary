@@ -48,18 +48,24 @@ namespace WinFormsVideoLibrary
             if (e.RowIndex == -1)
                 return;
 
-                var cellValue = moviesDataGrid.Rows[e.RowIndex].Cells[4].Value;
+            var cellValue = moviesDataGrid.Rows[e.RowIndex].Cells[4].Value;
 
-                if (cellValue is int movieId && movieId != 0)
-                {
-                    MovieForm movieForm = new MovieForm(movieId);
-                    movieForm.Show();
-                }
+            if (cellValue is int movieId && movieId != 0)
+            {
+                MovieForm movieForm = new MovieForm(movieId);
+                movieForm.Show();
+            }
         }
 
         private void Refresh_Click(object sender, EventArgs e)
         {
             loadDataGridService.LoadDataGridAsync(moviesDataGrid, UoW.MovieRepository.GetAll().Include(m => m.Genre).Include(m => m.Producer).ToList());
+        }
+
+        private void createMovie_Click(object sender, EventArgs e)
+        {
+            MovieForm movieForm = new MovieForm();
+            movieForm.Show();
         }
     }
 }

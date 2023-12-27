@@ -30,6 +30,21 @@ namespace WinFormsVideoLibrary.AutoMapperProfiles
                     dest => dest.IsSubscriptionActive,
                     opt => opt.MapFrom(src => IsSubscriptionActive(src.Subscription))
                 );
+
+
+
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.SubscriptionCreationDate, opt => opt.MapFrom(src => src.Subscription.CreationDate));
+
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.SubscriptionEndDate, opt => opt.MapFrom(src => src.Subscription.EndDate));
+
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.SubscriptionStatus, opt => opt.MapFrom(src => IsSubscriptionActive(src.Subscription)));
+
+
+            CreateMap<Producer, ProducerDto>();
+
         }
 
         private static string IsSubscriptionActive(Subscription subscription)
