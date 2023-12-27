@@ -1,6 +1,5 @@
 ﻿using DataBase;
 using Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Repo;
 
 namespace UnitOfWorkNamespace

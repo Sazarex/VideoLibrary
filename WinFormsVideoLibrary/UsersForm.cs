@@ -28,14 +28,17 @@ namespace WinFormsVideoLibrary
                 query = query.Where(m => m.Name.Contains(nameTextBox.Text));
             }
 
+            var now = DateTime.Now;
             if (isActive.Checked)
             {
-                query = query.Where(m => IsActiveSubscription(m));
+                query = query.Include(u => u.Subscription).Where(m => m.Subscription != null &&
+                (m.Subscription.CreationDate < now && m.Subscription.EndDate > now));
             }
 
             if (isNotActive.Checked)
             {
-                query = query.Where(m => !IsActiveSubscription(m));
+                query = query.Include(u => u.Subscription).Where(m => !(m.Subscription != null &&
+                (m.Subscription.CreationDate < now && m.Subscription.EndDate > now)));
             }
 
 
@@ -46,7 +49,7 @@ namespace WinFormsVideoLibrary
         {
             DateTime now = DateTime.Now;
             return user.Subscription != null &&
-                (user.Subscription.CreationDate.GetValueOrDefault() < now && user.Subscription.EndDate.GetValueOrDefault() > now);
+                (user.Subscription.CreationDate < now && user.Subscription.EndDate > now);
         }
 
         private void refresh_Click(object sender, EventArgs e)
