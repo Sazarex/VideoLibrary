@@ -29,9 +29,9 @@ namespace WinFormsVideoLibrary
             UoW.GenreRepository.CreateEntity(genre2);
             UoW.GenreRepository.CreateEntity(genre3);
 
-            var prod1 = new Producer() { Name = "Иван Пупкин", EntityState = EntityState.Active };
-            var prod2 = new Producer() { Name = "Карина Валеро", EntityState = EntityState.Active };
-            var prod3 = new Producer() { Name = "Жан Фатон", EntityState = EntityState.Active };
+            var prod1 = new Producer() { Name = "Иван Пупкин"};
+            var prod2 = new Producer() { Name = "Карина Валеро"};
+            var prod3 = new Producer() { Name = "Жан Фатон"};
 
             UoW.ProducerRepository.CreateEntity(prod1);
             UoW.ProducerRepository.CreateEntity(prod2);
