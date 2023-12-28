@@ -149,7 +149,7 @@
             Controls.Add(label1);
             Controls.Add(moviesDataGrid);
             Name = "MoviesForm";
-            Text = "MoviesForm";
+            Text = "Перечень фильмов";
             ((System.ComponentModel.ISupportInitialize)moviesDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();

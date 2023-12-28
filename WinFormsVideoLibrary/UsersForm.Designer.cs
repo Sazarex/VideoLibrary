@@ -134,7 +134,7 @@
             Controls.Add(nameTextBox);
             Controls.Add(label1);
             Name = "UsersForm";
-            Text = "UsersForm";
+            Text = "Перечень пользователей";
             Load += UsersForm_Load;
             ((System.ComponentModel.ISupportInitialize)usersDataGrid).EndInit();
             ResumeLayout(false);

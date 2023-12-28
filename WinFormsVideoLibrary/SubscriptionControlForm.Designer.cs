@@ -240,7 +240,7 @@
             Controls.Add(label1);
             Controls.Add(groupBox1);
             Name = "SubscriptionControlForm";
-            Text = "SubscriptionControlForm";
+            Text = "Контроль подписок";
             ((System.ComponentModel.ISupportInitialize)monthCounter).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

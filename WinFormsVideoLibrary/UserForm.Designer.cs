@@ -168,7 +168,7 @@
             Controls.Add(nameTextBox);
             Controls.Add(label1);
             Name = "UserForm";
-            Text = "UserForm";
+            Text = "Добавление\\редактирование пользователя";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();

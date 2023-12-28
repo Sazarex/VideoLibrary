@@ -66,7 +66,7 @@ namespace WinFormsVideoLibrary
         {
             if (entityId != null)
             {
-                var isHasMovies = UoW.MovieRepository.GetEntityByCondition(m => m.ProducerId == entityId, m => m.Producer ) != null;
+                var isHasMovies = UoW.MovieRepository.GetEntityByCondition(m => m.ProducerId == entityId, m => m.Producer) != null;
                 if (isHasMovies)
                     MessageBox.Show("У режиссера есть фильмы. Удалите сначала его фильмы, а когда не будет фильмов - режиссера.", "Ошибка удаления");
                 else

@@ -142,7 +142,7 @@
             Controls.Add(nameTextBox);
             Controls.Add(label1);
             Name = "MovieForm";
-            Text = "MovieForm";
+            Text = "Добавление\\редактирование фильма";
             ResumeLayout(false);
             PerformLayout();
         }

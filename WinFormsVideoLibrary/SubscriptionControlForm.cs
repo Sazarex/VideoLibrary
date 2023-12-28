@@ -162,7 +162,7 @@ namespace WinFormsVideoLibrary
 
             subscriptionStartDateLabel.Text = null;
             subscriptionEndDateLabel.Text = null;
-            startDateTimePicker.Value = user != null ? GenerateSubscriptionEndDate(user, nowDate): nowDate;
+            startDateTimePicker.Value = user != null ? GenerateSubscriptionEndDate(user, nowDate) : nowDate;
 
             subscriptionState.Text = null;
 

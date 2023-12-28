@@ -15,7 +15,7 @@ namespace DataBase
 
         public DataBaseContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -26,7 +26,7 @@ namespace DataBase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=VideoLibrary;Username=postgres;Password=superXXL");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=VideoLibrary;Username=postgres;Password=806959");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

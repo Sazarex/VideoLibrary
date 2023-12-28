@@ -109,7 +109,7 @@
             Controls.Add(label1);
             Controls.Add(producersDataGrid);
             Name = "ProducersForm";
-            Text = "ProducersForm";
+            Text = "Перечень режиссеров";
             ((System.ComponentModel.ISupportInitialize)producersDataGrid).EndInit();
             ResumeLayout(false);
             PerformLayout();

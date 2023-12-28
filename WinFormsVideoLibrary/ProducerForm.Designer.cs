@@ -81,7 +81,7 @@
             Controls.Add(nameTextBox);
             Controls.Add(label1);
             Name = "ProducerForm";
-            Text = "ProducerForm";
+            Text = "Редактирование\\добавление режиссера";
             ResumeLayout(false);
             PerformLayout();
         }
