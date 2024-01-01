@@ -21,13 +21,25 @@ namespace WinFormsVideoLibrary
         {
             UnitOfWork UoW = Program.UnitOfWork;
 
-            var genre1 = new Genre() { Name = "Драмма" };
+            var genre1 = new Genre() { Name = "Драма" };
             var genre2 = new Genre() { Name = "Триллер" };
             var genre3 = new Genre() { Name = "Фантастика" };
+            var genre4 = new Genre() { Name = "Мелодрама" };
+            var genre5 = new Genre() { Name = "Детектив" };
+            var genre6 = new Genre() { Name = "Ужас" };
+            var genre7 = new Genre() { Name = "Комедия" };
+            var genre8 = new Genre() { Name = "Мистика" };
+            var genre9 = new Genre() { Name = "Приключения" };
 
             UoW.GenreRepository.CreateEntity(genre1);
             UoW.GenreRepository.CreateEntity(genre2);
             UoW.GenreRepository.CreateEntity(genre3);
+            UoW.GenreRepository.CreateEntity(genre4);
+            UoW.GenreRepository.CreateEntity(genre5);
+            UoW.GenreRepository.CreateEntity(genre6);
+            UoW.GenreRepository.CreateEntity(genre7);
+            UoW.GenreRepository.CreateEntity(genre8);
+            UoW.GenreRepository.CreateEntity(genre9);
 
             var prod1 = new Producer() { Name = "Иван Пупкин"};
             var prod2 = new Producer() { Name = "Карина Валеро"};
