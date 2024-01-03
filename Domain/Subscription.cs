@@ -13,5 +13,6 @@ namespace Domain
         public virtual User User { get; set; }
         public virtual Payment Payment { get; set; }
         public int? UserId { get; set; }
+        public DateTime? UpdateTime { get ; set ; }
     }
 }

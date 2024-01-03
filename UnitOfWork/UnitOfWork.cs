@@ -7,7 +7,7 @@ namespace UnitOfWorkNamespace
     /// <summary>
     /// Большой синглтон todo: поправить под многопоточность
     /// </summary>
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private DataBaseContext db = new DataBaseContext();
 
@@ -73,35 +73,11 @@ namespace UnitOfWorkNamespace
             db.SaveChanges();
         }
 
-        public Repository<T> GetRepositoryByType<T>() where T: class, IEntity
-        {
-            return new Repository<T>(db);
-        }
+        //public Repository<T> GetRepositoryByType<T>() where T: class, IEntity
+        //{
+        //    return new Repository<T>(db);
+        //}
 
-        private bool disposed = false;
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~UnitOfWork()
-        {
-            Dispose(false);
-        }
 
     }
 }

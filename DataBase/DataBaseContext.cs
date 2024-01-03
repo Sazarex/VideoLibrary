@@ -15,8 +15,8 @@ namespace DataBase
 
         public DataBaseContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options)
@@ -37,6 +37,8 @@ namespace DataBase
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new SubscriptionConfiguration());
+
+            modelBuilder.Seed();
         }
     }
 }

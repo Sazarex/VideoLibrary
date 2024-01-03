@@ -1,16 +1,20 @@
 ﻿using Domain.Interfaces;
+using System.Linq.Expressions;
 
 namespace Repo
 {
     public interface IRepository<T>
-        where T: IEntity
+        where T : IEntity
     {
-        IQueryable<T> GetAll();
-        IEnumerable<T> GetByCondition(Func<T, bool> predicate);
-        T GetEntity(int id);
-        void CreateEntity(T entity);
-        void UpdateEntity(T entity);
-        void Delete(int id);
-        void Save();
+        public T GetEntity(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> include = null);
+        public T GetEntity(int id, Expression<Func<T, object>> include = null);
+
+        public IQueryable<T> GetEntities(Expression<Func<T, bool>> predicate);
+
+        public Task<bool> CreateEntity(T entity);
+
+        public Task<bool> DeleteEntity(T entity);
+
+        public Task<T> CreateOrUpdate(T entity);
     }
 }

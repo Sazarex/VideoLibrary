@@ -1,21 +1,13 @@
-﻿using DataBase;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Repo
 {
-    public class Repository<T> : IRepository<T> where T : class, IEntity
+    public abstract class Repository<T> : IRepository<T> where T : class, IEntity
     {
-
-        private readonly DbContext _context;
+        protected readonly DbContext _context;
         private DbSet<T> dbSet { get; set; }
-
-
-
-
-
-
 
         public Repository(DbContext context)
         {
@@ -23,64 +15,73 @@ namespace Repo
             dbSet = _context.Set<T>();
         }
 
-        public void CreateEntity(T entity)
+        public T GetEntity(Expression<Func<T, bool>> predicate, Expression<Func<T, object>> include = null)
         {
-            dbSet.Add(entity);
-        }
-
-        public void Delete(int id)
-        {
-            T entity = dbSet.Find(id);
-            if (entity != null)
-                dbSet.Remove(entity);
-        }
-
-        public IQueryable<T> GetAll()
-        {
-            return dbSet;
-        }
-
-        public T GetEntity(int id)
-        {
-            return dbSet.Find(id);
-        }
-
-        public T GetEntity(int id, Expression<Func<T, object>> include)
-        {
-            var entity =  dbSet.Find(id);
-
-            if (entity != null)
-            _context.Entry(entity).Reference(include).Load();
-
+            var entity = dbSet.FirstOrDefault(predicate);
+            if (include != null)
+                _context.Entry(entity).Reference(include).Load();
             return entity;
         }
 
-        public void Save()
+        public T GetEntity(int id, Expression<Func<T, object>> include = null)
         {
-            _context.SaveChanges();
+            var entity = dbSet.FirstOrDefault(i => i.Id == id);
+            if (include != null)
+                _context.Entry(entity).Reference(include).Load();
+            return entity;
         }
 
-        public IEnumerable<T> GetByCondition(Func<T, bool> predicate)
+        public IQueryable<T> GetEntities(Expression<Func<T, bool>> predicate)
         {
             return dbSet.Where(predicate);
         }
 
-        public T GetEntityByCondition(Func<T, bool> predicate, Expression<Func<T, object>> include)
+        public async Task<bool>  CreateEntity(T entity)
         {
-            var entity = dbSet.FirstOrDefault(predicate);
-            if (entity != null)
-                _context.Entry(entity).Reference(include).Load();
+            if (entity is IEntityState entityWithState)
+                SetActiveState(entityWithState);
+
+            await dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteEntity(T entity)
+        {
+            if (entity is IEntityState entityWithState)
+                SetDeletedState(entityWithState);
+
+            dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<T> CreateOrUpdate(T entity)
+        {
+            if (entity.Id != 0 && entity is IDateInfo dateInfoEntity)
+
+
+            dbSet.Update(entity);
+            await _context.SaveChangesAsync();
 
             return entity;
         }
 
-        public void UpdateEntity(T entity)
+        private void SetActiveState(IEntityState entity)
         {
+            entity.EntityState = Domain.BaseTypes.EntityState.Active;
         }
 
-
-
-
+        private void SetDeletedState(IEntityState entity)
+        {
+            entity.EntityState = Domain.BaseTypes.EntityState.Deleted;
+        }
+        private void Update(IEntityState entity)
+        {
+            entity.EntityState = Domain.BaseTypes.EntityState.Deleted;
+        }
 
     }
 }
