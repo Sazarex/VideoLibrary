@@ -1,6 +1,5 @@
 using Domain;
 using Domain.BaseTypes;
-using Domain.Interfaces;
 
 namespace UnitOfWork.Tests
 {
@@ -32,20 +31,27 @@ namespace UnitOfWork.Tests
         }
 
         [Fact]
-        public void CreateGetDeleteCreatedProducer()
+        public async void TryDeleteCreatedProducer()
         {
             var entity = uow.ProducerRepository.GetEntity(p => p.Name == nameOfNewProducer);
 
-            if (entity is IEntityState)
-            {
-                entity.EntityState = EntityState.Deleted;
-                var entityStateOfDeleted = uow.ProducerRepository.GetEntity(entity.Id).EntityState;
-                Assert.Equal(EntityState.Deleted, entityStateOfDeleted.GetValueOrDefault());
-            }
-            else
-                Assert.True(uow.ProducerRepository.DeleteEntity(entity).Result);
+            var resultOfRemoving = await uow.ProducerRepository.DeleteEntity(entity);
+            Assert.True(resultOfRemoving);
+        }
 
-            uow.Save();
+        [Fact]
+        public async void CheckEntityStateOfDeletedUser()
+        {
+            string nameOfNewUser = "Тестовый пользователь";
+            var newUser = new User()
+            {
+                Name = nameOfNewUser
+            };
+
+            await uow.UserRepository.CreateEntity(newUser);
+            await uow.UserRepository.DeleteEntity(newUser);
+
+            Assert.Equal(EntityState.Deleted, newUser.EntityState.GetValueOrDefault());
         }
 
         [Fact]

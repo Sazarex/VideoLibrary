@@ -36,10 +36,13 @@ namespace Repo
             return dbSet.Where(predicate);
         }
 
-        public async Task<bool>  CreateEntity(T entity)
+        public async Task<bool> CreateEntity(T entity)
         {
             if (entity is IEntityState entityWithState)
                 SetActiveState(entityWithState);
+
+            if (entity is IDateInfo dateInfoEntity)
+                SetCreationDate(dateInfoEntity);
 
             await dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -50,9 +53,15 @@ namespace Repo
         public async Task<bool> DeleteEntity(T entity)
         {
             if (entity is IEntityState entityWithState)
+            {
                 SetDeletedState(entityWithState);
 
-            dbSet.Remove(entity);
+                if (entityWithState is IDateInfo dateInfoEntity)
+                    SetEndDate(dateInfoEntity);
+            }
+            else
+                dbSet.Remove(entity);
+
             await _context.SaveChangesAsync();
 
             return true;
@@ -61,13 +70,15 @@ namespace Repo
         public async Task<T> CreateOrUpdate(T entity)
         {
             if (entity.Id != 0 && entity is IDateInfo dateInfoEntity)
-                Update(dateInfoEntity);
+                UpdateDate(dateInfoEntity);
 
             dbSet.Update(entity);
             await _context.SaveChangesAsync();
 
             return entity;
         }
+
+
 
         private void SetActiveState(IEntityState entity)
         {
@@ -78,9 +89,20 @@ namespace Repo
         {
             entity.EntityState = Domain.BaseTypes.EntityState.Deleted;
         }
-        private void Update(IDateInfo entity)
+
+        private void UpdateDate(IDateInfo entity)
         {
             entity.UpdateDate = DateTime.UtcNow;
+        }
+
+        private void SetCreationDate(IDateInfo entity)
+        {
+            entity.CreationDate = DateTime.UtcNow;
+        }
+
+        private void SetEndDate(IDateInfo entity)
+        {
+            entity.EndDate = DateTime.UtcNow;
         }
 
     }
