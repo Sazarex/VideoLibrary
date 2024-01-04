@@ -61,7 +61,7 @@ namespace Repo
         public async Task<T> CreateOrUpdate(T entity)
         {
             if (entity.Id != 0 && entity is IDateInfo dateInfoEntity)
-
+                Update(dateInfoEntity);
 
             dbSet.Update(entity);
             await _context.SaveChangesAsync();
@@ -78,9 +78,9 @@ namespace Repo
         {
             entity.EntityState = Domain.BaseTypes.EntityState.Deleted;
         }
-        private void Update(IEntityState entity)
+        private void Update(IDateInfo entity)
         {
-            entity.EntityState = Domain.BaseTypes.EntityState.Deleted;
+            entity.UpdateDate = DateTime.UtcNow;
         }
 
     }

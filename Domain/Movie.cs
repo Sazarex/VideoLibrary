@@ -14,7 +14,7 @@ namespace Domain
         public string Description { get; set; }
         public virtual Genre Genre { get;set; }
         public virtual Producer Producer { get; set; }
-        public DateTime? UpdateTime { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
 
         public int? GenreId { get; set; }

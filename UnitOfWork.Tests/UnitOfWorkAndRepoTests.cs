@@ -4,6 +4,7 @@ using Domain.Interfaces;
 
 namespace UnitOfWork.Tests
 {
+    [Collection("Sequential")]
     public class UnitOfWorkAndRepoTests
     {
         UnitOfWorkNamespace.UnitOfWork uow = new UnitOfWorkNamespace.UnitOfWork();
@@ -31,7 +32,7 @@ namespace UnitOfWork.Tests
         }
 
         [Fact]
-        public void GetAndDeleteCreatedProducer()
+        public void CreateGetDeleteCreatedProducer()
         {
             var entity = uow.ProducerRepository.GetEntity(p => p.Name == nameOfNewProducer);
 
@@ -45,6 +46,18 @@ namespace UnitOfWork.Tests
                 Assert.True(uow.ProducerRepository.DeleteEntity(entity).Result);
 
             uow.Save();
+        }
+
+        [Fact]
+        public async void UpdateMovie()
+        {
+            var entity = uow.MovieRepository.GetEntity(1);
+            var oldDate = entity.UpdateDate.GetValueOrDefault();
+            await uow.MovieRepository.CreateOrUpdate(entity);
+            var newDate = entity.UpdateDate.GetValueOrDefault();
+
+
+            Assert.True(oldDate < newDate);
         }
     }
 }

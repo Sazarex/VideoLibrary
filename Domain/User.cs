@@ -12,6 +12,6 @@ namespace Domain
         public EntityState? EntityState { get; set; }
         public int? Age { get; set; }
         public virtual ICollection<Subscription> Subscriptions { get; set; }
-        public DateTime? UpdateTime { get ; set ; }
+        public DateTime? UpdateDate { get ; set ; }
     }
 }
